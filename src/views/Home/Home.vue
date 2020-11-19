@@ -1,15 +1,17 @@
 <template>
   <div class="home">
-
+    <Button color="primary">主色系按钮</Button>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import {se} from "../request/api";
-
 export default {
   name: 'Home',
+  data(){
+    return{
+      value:0
+    }
+  },
   mounted() {
   },
   components: {
