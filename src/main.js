@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import {install, Button } from 'heyui';
+import 'lib-flexible'
 
 Vue.use(install, { components: { Button }});
 import "heyui/themes/index.less";

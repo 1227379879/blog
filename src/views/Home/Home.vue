@@ -1,10 +1,13 @@
 <template>
   <div class="home">
-    <Button color="primary">主色系按钮</Button>
+    <navbar></navbar>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
+import navbar from "@/components/navbar";
+
 export default {
   name: 'Home',
   data(){
@@ -15,6 +18,7 @@ export default {
   mounted() {
   },
   components: {
+    navbar
   }
 }
 </script>
