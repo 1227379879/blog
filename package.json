@@ -8,9 +8,10 @@
     "dev": "webpack-dev-server --host 0.0.0.0 --inline --progress --config build/webpack.dev.conf.js"
   },
   "dependencies": {
+    "animate.css": "^4.1.1",
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
-    "heyui": "^1.26.1",
+    "element-ui": "^2.14.1",
     "js-cookie": "^2.2.1",
     "lib-flexible": "^0.3.2",
     "vue": "^2.6.11",
@@ -22,11 +23,13 @@
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
+    "babel-plugin-component": "^1.1.1",
     "babel-plugin-import": "^1.13.1",
     "less": "^3.12.2",
     "less-loader": "^7.1.0",
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.2",
+    "vue-particles": "^1.0.9",
     "vue-template-compiler": "^2.6.11"
   }
 }

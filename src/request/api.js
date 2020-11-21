@@ -6,3 +6,10 @@ export function se(phone,password){
         method:"get"
     })
 }
+
+export function bannerData(){
+    return app({
+        url:"/banner?type=2",
+        method:"get"
+    })
+}

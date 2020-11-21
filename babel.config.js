@@ -9,6 +9,13 @@ module.exports = {
           "libraryDirectory":"lib/components"
         }
 
-      ]
+      ],
+    [
+      "component",
+      {
+        "libraryName": "element-ui",
+        "styleLibraryName": "theme-chalk"
+      }
+    ]
   ]
 }

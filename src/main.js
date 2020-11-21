@@ -2,12 +2,16 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import {install, Button } from 'heyui';
-import 'lib-flexible'
-
-Vue.use(install, { components: { Button }});
-import "heyui/themes/index.less";
+import ElementUI from 'element-ui';
+import animated from 'animate.css'
+import VueParticles from 'vue-particles'
+Vue.use(VueParticles)
+Vue.use(ElementUI);
+Vue.use(animated)
 Vue.config.productionTip = false
+import 'lib-flexible'
+import "./style/heyui.css"
+import 'element-ui/lib/theme-chalk/index.css';
 
 new Vue({
   router,
