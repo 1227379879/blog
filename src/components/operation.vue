@@ -16,19 +16,16 @@
 <script>
 export default {
   name: "operation",
-  props:["header"],
   data() {
     return {
       uploadFiles: []
     }
   },
   mounted() {
-    console.log("子",this.$props.header)
   },
   methods: {
     loadJsonFromFile(file, fileList) {
       this.uploadFiles = fileList
-      // this.submit()
       this.uploadFiles.forEach(item=>{
         let file = item.raw;
         let reader = new FileReader()
@@ -39,10 +36,6 @@ export default {
           console.log("e",e);
           const fileString = e.target.result
           // 接下来可对文件内容进行处理
-          let header = this.$props.header
-          // window.getComputedStyle(header, "::before").getPropertyValue("background")
-          let he = document.querySelector(".header")
-          console.log(he,"wwww")
           document.styleSheets[0].addRule(".header::before","background:url("+fileString+")!important")
         }
       })

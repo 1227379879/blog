@@ -5,7 +5,7 @@
         <loading v-if="isLoading"></loading>
       </div>
     </transition>
-    <header class="header" ref="header">
+    <header class="header">
       <vue-particles
           color="#dedede"
           :particleOpacity="0.7"
@@ -29,7 +29,6 @@
       Open Menu
     </el-button>
 
-<!--    document.querySelect("#aa::before")-->
 
     <el-drawer
         class="drawer_option"
@@ -39,7 +38,7 @@
         size="18%"
         :before-close="handleClose">
       <div>
-        <operation :header="header"></operation>
+        <operation></operation>
       </div>
     </el-drawer>
 
@@ -63,7 +62,6 @@ export default {
     }
   },
   mounted() {
-    console.log(this.$refs.header);
     this.header = this.$refs.header
     //页面加载的延时器
     setTimeout(()=>{
@@ -133,7 +131,7 @@ export default {
     background: url(../../assets/images/bgi3.jpg) no-repeat 50%;
     width: 100%;
     top: 0;
-    background-size: cover;
+    background-size: cover!important;
   }
   .operation{
     background:url("../../assets/images/bgi1.jpg");
