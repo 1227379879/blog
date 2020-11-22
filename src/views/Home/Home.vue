@@ -6,6 +6,7 @@
       </div>
     </transition>
     <header class="header">
+
       <el-tooltip class="item" effect="dark" content="天气" placement="left">
       <weather :list="weatherList"></weather>
       </el-tooltip>
@@ -28,11 +29,15 @@
       >
       </vue-particles>
     </header>
+
     <el-tooltip class="item" effect="dark" content="菜单" placement="bottom">
+
+
     <el-button icon="el-icon-menu" v-show="btnType"
                :class="!isLoading?'animate__bounceIn animate__infinite drawer-button':''" @click="changeDrawer">
       Open Menu
     </el-button>
+
     </el-tooltip>
 
     <el-drawer
@@ -53,7 +58,9 @@
 <script>
 import loading from "@/components/loading";
 import operation from "@/components/operation";
+
 import weather from "@/components/weather"
+
 
 export default {
   name: 'Home',
@@ -65,6 +72,7 @@ export default {
       btnType: true,
       timeStateMent: "",
       weatherList:""
+
     }
   },
   mounted() {
