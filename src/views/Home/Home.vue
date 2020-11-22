@@ -6,6 +6,7 @@
       </div>
     </transition>
     <header class="header">
+
       <vue-particles
           color="#dedede"
           :particleOpacity="0.7"
@@ -25,10 +26,10 @@
       >
       </vue-particles>
     </header>
-    <el-button icon="el-icon-menu" v-show="btnType" :class="!isLoading?'animate__bounceIn animate__infinite drawer-button':''" @click="changeDrawer">
+    <el-button icon="el-icon-menu" v-show="btnType"
+               :class="!isLoading?'animate__bounceIn animate__infinite drawer-button':''" @click="changeDrawer">
       Open Menu
     </el-button>
-
 
     <el-drawer
         class="drawer_option"
@@ -41,7 +42,6 @@
         <operation></operation>
       </div>
     </el-drawer>
-
     <router-view></router-view>
   </div>
 </template>
@@ -50,45 +50,73 @@
 import navbar from "@/components/navbar";
 import loading from "@/components/loading";
 import operation from "@/components/operation";
+
 export default {
   name: 'Home',
-  data(){
-    return{
+  data() {
+    return {
       drawer: false,
       direction: 'ltr',
-      isLoading:true,
-      btnType:true,
-      header:null
+      isLoading: true,
+      btnType: true,
+      timeStateMent: ""
     }
   },
   mounted() {
-    this.header = this.$refs.header
     //页面加载的延时器
-    setTimeout(()=>{
+    setTimeout(() => {
       this.isLoading = false
-    },800)
+      //来控制提示语
+      this.$message({
+        message: this.timeStateMent,
+        center: true,
+        iconClass: "el-icon-chat-dot-round",
+        duration:2000
+      });
+    }, 800)
+
+    //提示信息
+    let day = new Date()
+    let hr = day.getHours()
+    if ((hr >= 0) && (hr <= 4))
+      this.timeStateMent = "深夜了，该睡觉了~，注意身体哦..."
+    if ((hr >= 4) && (hr < 7))
+      this.timeStateMent = "清晨好，起得真早啊..."
+    if ((hr >= 7) && (hr < 12))
+      this.timeStateMent = "早上好,又是美好的一天呢"
+    if ((hr >= 12) && (hr <= 13))
+      this.timeStateMent = "中午好啊，是午饭时间喔，"
+    if ((hr >= 13) && (hr <= 17))
+      this.timeStateMent = "下午好啊，外面的太阳猛烈吗?"
+    if ((hr >= 18) && (hr <= 20))
+      this.timeStateMent = "现在是晚上"+new Date().toLocaleString('chinese', { hour12: false })+"，该吃晚饭了吧"
+    if ((hr >= 21) && (hr<=23))
+      this.timeStateMent = "夜深了，这个点该做些什么呢"
+
+    this.$.get("http://wthrcdn.etouch.cn/weather_mini?city=北京").then(res=>{
+      console.log(res.data)
+    })
   },
-  methods:{
-    changeDrawer(){
+  methods: {
+    //打开抽屉
+    changeDrawer() {
       this.drawer = true
       this.btnType = false
       this.$notify.info({
         title: '用户操作',
         message: '用户打开了菜单栏',
         showClose: false,
-        customClass:"operation",
-        duration:"2000"
+        customClass: "operation",
+        duration: "2000"
       });
     },
+    //关闭抽屉
     handleClose(done) {
       done();
       this.btnType = true
     }
   },
-  computed:{
-  },
   components: {
-    navbar,
     loading,
     operation
   }
@@ -100,56 +128,78 @@ export default {
 .fade-leave-active {
   opacity: 0;
 }
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s;
 }
-  .home{
-    position: relative;
 
-    .drawer-button{
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      background-color: transparent;
-      color: #fff;
-      transition: 0.3s;
-      &:hover{
-        background-color: rgba(0,0,0,.3);
-      }
-    }
-  }
-  .header{
-    overflow: hidden;
-    height: 100vh;
-    position: relative;
-  }
-  .header::before{
-    content: "";
-    height: 100%;
+.home {
+  position: relative;
+
+  .drawer-button {
     position: absolute;
-    background: url(../../assets/images/bgi3.jpg) no-repeat 50%;
-    width: 100%;
-    top: 0;
-    background-size: cover!important;
-  }
-  .operation{
-    background:url("../../assets/images/bgi1.jpg");
-    z-index: 9999!important;
-    border: 0;
+    top: 20px;
+    left: 20px;
+    background-color: transparent;
+    color: #fff;
+    transition: 0.3s;
 
-    .el-notification__content , .el-notification__title ,.el-icon-info{
-      color: #fff!important;
+    &:hover {
+      background-color: rgba(0, 0, 0, .3);
     }
   }
-  .drawer_option{
+}
+
+.header {
+  overflow: hidden;
+  height: 100vh;
+  position: relative;
+}
+
+.header::before {
+  content: "";
+  height: 100%;
+  position: absolute;
+  background: url(../../assets/images/bgi3.jpg) no-repeat 50%;
+  width: 100%;
+  top: 0;
+  background-size: cover !important;
+}
+
+.operation {
+  background: url("../../assets/images/bgi1.jpg");
+  z-index: 9999 !important;
+  border: 0;
+
+  .el-notification__content, .el-notification__title, .el-icon-info {
+    color: #fff !important;
   }
-  #particles-js{
-    position: relative;
-  }
-  //遮罩
-  .v-modal{
-    //background-color: transparent;
-  }
-  //.el-drawer 抽屉背景
+}
+
+.drawer_option {
+}
+
+#particles-js {
+  position: relative;
+}
+.el-icon-chat-dot-round{
+  margin-right: 10px;
+  transform: rotateY(180deg);
+}
+.el-message{
+  min-width: 0;
+  color: #fff;
+  background: #333;
+  border-radius: 20px;
+  border: 0;
+  padding: 15px 30px;
+}
+
+//遮罩
+.v-modal {
+  //background-color: transparent;
+}
+
+//.el-drawer 抽屉背景
 </style>

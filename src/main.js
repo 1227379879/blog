@@ -5,6 +5,8 @@ import store from './store'
 import ElementUI from 'element-ui';
 import animated from 'animate.css'
 import VueParticles from 'vue-particles'
+import axios from "axios"
+Vue.prototype.$ = axios
 Vue.use(VueParticles)
 Vue.use(ElementUI);
 Vue.use(animated)
