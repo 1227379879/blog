@@ -7,7 +7,16 @@ module.exports={
                 pathRewrite:{
                     "^/api":""
                 }
+            },
+            "/yan":{
+                target: "https://www.xzccc.com",
+                changeOrigin:true,
+                pathRewrite: {
+                    "^/yan":""
+                }
+
             }
+
         }
     },
 
