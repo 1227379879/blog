@@ -7,7 +7,7 @@
     </transition>
     <header class="header">
       <el-tooltip class="item" effect="dark" content="天气" placement="left">
-      <weather :list="weatherList"></weather>
+        <weather :list="weatherList"></weather>
       </el-tooltip>
       <vue-particles
           color="#dedede"
@@ -30,10 +30,9 @@
     </header>
 
     <el-button icon="el-icon-menu" v-show="btnType"
-        :class="!isLoading?'animate__bounceIn animate__infinite drawer-button':''" @click="changeDrawer">
+               :class="!isLoading?'animate__bounceIn animate__infinite drawer-button':''" @click="changeDrawer">
       Open Menu
     </el-button>
-
 
     <el-drawer
         class="drawer_option"
@@ -53,9 +52,8 @@
 <script>
 import loading from "@/components/loading";
 import operation from "@/components/operation";
-
 import weather from "@/components/weather"
-
+import {search} from "@/request/api";
 
 export default {
   name: 'Home',
@@ -66,45 +64,17 @@ export default {
       isLoading: true,
       btnType: true,
       timeStateMent: "",
-      weatherList:""
+      weatherList: ""
 
     }
   },
   mounted() {
-    //页面加载的延时器
-    setTimeout(() => {
-      this.isLoading = false
-      //来控制提示语
-      this.$message({
-        message: this.timeStateMent,
-        center: true,
-        iconClass: "el-icon-chat-dot-round",
-        duration:2000
-      });
-    }, 800)
-
-    //提示信息
-    let day = new Date()
-    let hr = day.getHours()
-    if ((hr >= 0) && (hr <= 4))
-      this.timeStateMent = "深夜了，该睡觉了~，注意身体哦..."
-    if ((hr >= 4) && (hr < 7))
-      this.timeStateMent = "清晨好，起得真早啊..."
-    if ((hr >= 7) && (hr < 12))
-      this.timeStateMent = "早上好,又是美好的一天呢"
-    if ((hr >= 12) && (hr <= 13))
-      this.timeStateMent = "中午好啊，是午饭时间喔，"
-    if ((hr >= 13) && (hr <= 17))
-      this.timeStateMent = "下午好啊，外面的太阳猛烈吗?"
-    if ((hr >= 18) && (hr <= 20))
-      this.timeStateMent = "现在是晚上"+new Date().toLocaleString('chinese', { hour12: false })+"，该吃晚饭了吧"
-    if ((hr >= 21) && (hr<=23))
-      this.timeStateMent = "夜深了，这个点该做些什么呢"
-
-    this.$.get("http://wthrcdn.etouch.cn/weather_mini?city=北京").then(res=>{
-      console.log(res.data)
-      this.weatherList = res.data
+    search().then(res=>{
+      console.log(res)
     })
+    this.WeatherTips()
+    this.CrossDomainRequest()
+
   },
   methods: {
     //打开抽屉
@@ -123,6 +93,47 @@ export default {
     handleClose(done) {
       done();
       this.btnType = true
+    },
+    WeatherTips(){
+      //页面加载的延时器
+      setTimeout(() => {
+        this.isLoading = false
+        //来控制提示语
+        this.$message({
+          message: this.timeStateMent,
+          center: true,
+          iconClass: "el-icon-chat-dot-round",
+          duration:2000
+        });
+      }, 800)
+      //提示信息
+      let day = new Date()
+      let hr = day.getHours()
+      if ((hr >= 0) && (hr <= 4))
+        this.timeStateMent = "深夜了，该睡觉了~，注意身体哦..."
+      if ((hr >= 4) && (hr < 7))
+        this.timeStateMent = "清晨好，起得真早啊..."
+      if ((hr >= 7) && (hr < 12))
+        this.timeStateMent = "早上好,又是美好的一天呢"
+      if ((hr >= 12) && (hr <= 13))
+        this.timeStateMent = "中午好啊，是午饭时间喔，"
+      if ((hr >= 13) && (hr <= 17))
+        this.timeStateMent = "下午好啊，外面的太阳猛烈吗?"
+      if ((hr >= 18) && (hr <= 20))
+        this.timeStateMent = "现在是晚上"+new Date().toLocaleString('chinese', { hour12: false })+"，该吃晚饭了吧"
+      if ((hr >= 21) && (hr<=23))
+        this.timeStateMent = "夜深了，这个点该做些什么呢"
+
+      this.$.get("http://wthrcdn.etouch.cn/weather_mini?city=北京").then(res=>{
+        console.log(res.data)
+        this.weatherList = res.data
+      })
+    },
+    CrossDomainRequest(){
+      this.$.get("http://wthrcdn.etouch.cn/weather_mini?city=北京").then(res => {
+        console.log(res.data)
+        this.weatherList = res.data
+      })
     }
   },
   components: {
@@ -161,11 +172,13 @@ export default {
 
   }
 }
-.el-button:focus{
-  color: #fff!important;
-  border: 1px solid #DCDFE6!important;
-  background-color: transparent!important;
+
+.el-button:focus {
+  color: #fff !important;
+  border: 1px solid #DCDFE6 !important;
+  background-color: transparent !important;
 }
+
 .header {
   overflow: hidden;
   height: 100vh;
@@ -198,16 +211,18 @@ export default {
 #particles-js {
   position: relative;
 }
-.el-icon-chat-dot-round{
+
+.el-icon-chat-dot-round {
   margin-right: 10px;
   transform: rotateY(180deg);
 }
-.el-message{
+
+.el-message {
   min-width: 0;
   color: #fff;
-  background: #333!important;
+  background: #333 !important;
   border-radius: 20px;
-  border: 0!important;
+  border: 0 !important;
   padding: 15px 30px;
 }
 

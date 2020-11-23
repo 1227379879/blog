@@ -9,7 +9,7 @@ module.exports={
                 }
             },
             "/yan":{
-                target: "https://www.xzccc.com",
+                target: "https://www.yunboys.cn/",
                 changeOrigin:true,
                 pathRewrite: {
                     "^/yan":""

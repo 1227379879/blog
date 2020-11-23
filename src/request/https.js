@@ -14,7 +14,7 @@ instance.interceptors.request.use(function (config){
 //响应器
 instance.interceptors.response.use(function (response){
     console.log("响应器")
-    return response
+    return response.data
 },function (error){
     console.log("失败")
     return Promise.reject(error)
