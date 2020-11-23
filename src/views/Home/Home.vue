@@ -202,15 +202,14 @@ export default {
 .el-message{
   min-width: 0;
   color: #fff;
-  background: #333;
+  background: #333!important;
   border-radius: 20px;
-  border: 0;
+  border: 0!important;
   padding: 15px 30px;
 }
 
 //遮罩
 .v-modal {
-  //background-color: transparent;
 }
 
 //.el-drawer 抽屉背景
