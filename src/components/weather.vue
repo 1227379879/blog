@@ -1,5 +1,5 @@
 <template>
-  <div class="weather-box">
+  <div class="weather-box" @click='aa'>
 
   </div>
 </template>
@@ -8,6 +8,11 @@
   export default {
     name:"weather",
     props:["list"],
+    methods:{
+      aa(){
+        console.log("aa")
+      }
+    }
   }
 </script>
 
