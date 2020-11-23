@@ -30,13 +30,12 @@ export default {
         let file = item.raw;
         let reader = new FileReader()
         reader.readAsDataURL(file);
-
         reader.onload = (e) => {
           // 读取文件内容
-          console.log("e",e);
           const fileString = e.target.result
           // 接下来可对文件内容进行处理
           document.styleSheets[0].addRule(".header::before","background:url("+fileString+")!important")
+          this.$refs.upload.clearFiles();
         }
       })
     },

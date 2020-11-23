@@ -6,7 +6,6 @@
       </div>
     </transition>
     <header class="header">
-
       <el-tooltip class="item" effect="dark" content="天气" placement="left">
       <weather :list="weatherList"></weather>
       </el-tooltip>
@@ -30,7 +29,6 @@
       </vue-particles>
     </header>
 
-    <el-tooltip class="item" effect="dark" content="菜单" placement="bottom">
 
 
     <el-button icon="el-icon-menu" v-show="btnType"
@@ -38,7 +36,6 @@
       Open Menu
     </el-button>
 
-    </el-tooltip>
 
     <el-drawer
         class="drawer_option"
@@ -121,7 +118,7 @@ export default {
         message: '用户打开了菜单栏',
         showClose: false,
         customClass: "operation",
-        duration: "2000"
+        duration: "1000"
       });
     },
     //关闭抽屉
