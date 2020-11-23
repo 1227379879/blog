@@ -29,10 +29,8 @@
       </vue-particles>
     </header>
 
-
-
     <el-button icon="el-icon-menu" v-show="btnType"
-               :class="!isLoading?'animate__bounceIn animate__infinite drawer-button':''" @click="changeDrawer">
+        :class="!isLoading?'animate__bounceIn animate__infinite drawer-button':''" @click="changeDrawer">
       Open Menu
     </el-button>
 
@@ -160,9 +158,14 @@ export default {
     &:hover {
       background-color: rgba(0, 0, 0, .3);
     }
+
   }
 }
-
+.el-button:focus{
+  color: #fff!important;
+  border: 1px solid #DCDFE6!important;
+  background-color: transparent!important;
+}
 .header {
   overflow: hidden;
   height: 100vh;
