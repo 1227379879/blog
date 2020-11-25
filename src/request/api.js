@@ -2,6 +2,7 @@ import request from "./https"
 const BASE_URL="/api"
 const BASE_URL_RANDOM = "/random"
 const BASE_URL_ANA = "/ana"
+const BASE_URL_VVHAN = "/vvhan"
 
 /**
  *测试多接口*/
@@ -20,3 +21,12 @@ export function RandomAna(){
     })
 }
 
+/**
+ * 随机语录接口
+ * */
+export function RandomVvhan() {
+    return request({
+        url: BASE_URL_VVHAN + "/api/sao",
+        method:"get"
+    })
+}

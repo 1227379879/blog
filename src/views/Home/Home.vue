@@ -33,9 +33,7 @@ import loading from "@/components/Loading/loading";
 import operation from "@/components/Operation/operation";
 import Header from "@/components/Header/Header";
 import {search} from "@/request/api"
-// document.body.oncopy=function(){
-//     .$message('这是一条消息提示');
-// }
+
 export default {
     name: 'Home',
     data() {
@@ -102,11 +100,13 @@ export default {
             if ((hr >= 21) && (hr <= 23))
                 this.timeStateMent = "夜深了，这个点该做些什么呢"
         },
+        //网易测试多接口
         getSearch() {
             search().then(res => {
                 console.log(res)
             })
         },
+        //复制提示
         copy(){
             let that = this
             document.body.oncopy=function(){
@@ -165,6 +165,8 @@ export default {
 
 
 .drawer_option {
+    opacity: 0.5;
+    outline: none;
 }
 
 #particles-js {

@@ -53,7 +53,7 @@ export default {
 .drawer_side_panel {
   padding: 20px;
   height: 100vh;
-  background: url("http://image.namedq.com/uploads/20191231/15/1577775642-BtiqPWvdGD.jpeg") no-repeat;
-  background-size: 100% 100%;
+  //background: url("http://image.namedq.com/uploads/20191231/15/1577775642-BtiqPWvdGD.jpeg") no-repeat;
+  //background-size: 100% 100%;
 }
 </style>

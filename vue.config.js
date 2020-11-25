@@ -4,6 +4,13 @@ module.exports={
         host:"localhost",
         https:false,
         proxy:{
+            "/vvhan":{
+                target:"https://api.vvhan.com",
+                changeOrigin:true,
+                pathRewrite:{
+                    "^/vvhan":""
+                }
+            },
             "/random":{
                 target: "https://www.yunboys.cn/",
                 changeOrigin:true,
@@ -27,6 +34,7 @@ module.exports={
                     "^/ana":""
                 }
             }
+
         }
     },
 }
