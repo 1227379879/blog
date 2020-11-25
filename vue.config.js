@@ -1,6 +1,17 @@
 module.exports={
     devServer:{
+        port:8888,
+        host:"localhost",
+        https:false,
         proxy:{
+            "/random":{
+                target: "https://www.yunboys.cn/",
+                changeOrigin:true,
+                pathRewrite: {
+                    "^/random":""
+                }
+            },
+
             "/api":{
                 target:"http://musicapi.leanapp.cn",
                 changeOrigin:true,
@@ -8,14 +19,14 @@ module.exports={
                     "^/api":""
                 }
             },
-            "/yan":{
-                target: "https://www.yunboys.cn/",
+
+            "/ana":{
+                target:"https://www.inqingdao.cn/",
                 changeOrigin:true,
-                pathRewrite: {
-                    "^/yan":""
+                pathRewrite:{
+                    "^/ana":""
                 }
             }
-
         }
     },
 }

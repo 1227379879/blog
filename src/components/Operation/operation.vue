@@ -24,6 +24,12 @@ export default {
   mounted() {
   },
   methods: {
+    /**
+     * 实现功能：
+     * 用户点击按钮上传图片
+     * 最后解析替换成页面的背景图
+     * 停留功能：TODO：背景图缓存
+     * */
     loadJsonFromFile(file, fileList) {
       this.uploadFiles = fileList
       this.uploadFiles.forEach(item=>{
@@ -38,9 +44,6 @@ export default {
           this.$refs.upload.clearFiles();
         }
       })
-    },
-    submit() {
-
     }
   }
 }

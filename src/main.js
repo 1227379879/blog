@@ -11,6 +11,8 @@ Vue.use(VueParticles)
 Vue.use(ElementUI);
 Vue.use(animated)
 Vue.config.productionTip = false
+
+//css
 import 'lib-flexible'
 import "./style/heyui.css"
 import 'element-ui/lib/theme-chalk/index.css';

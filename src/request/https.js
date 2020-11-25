@@ -1,6 +1,7 @@
 import axios from "axios"
 const instance = axios.create({
-    baseURL:"/api/"
+    baseURL:"",
+    timeout: 10000, //基础路径,根据不同环境设置 baseURL, 最终发送请求时的URL为: baseURL + 发送请求时写URL ,
 })
 
 //拦截器
@@ -13,10 +14,11 @@ instance.interceptors.request.use(function (config){
 
 //响应器
 instance.interceptors.response.use(function (response){
-    console.log("响应器")
     return response.data
 },function (error){
     console.log("失败")
     return Promise.reject(error)
 })
-export  default instance
+export default instance
+
+

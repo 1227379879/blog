@@ -12,7 +12,7 @@
     components:{
     }
   }
-  
+
 </script>
 <style lang="scss">
  html,body{
@@ -22,5 +22,9 @@
    width: 0;
    height: 0;
    color: transparent;
+ }
+ ::selection {
+     color: #fff;
+     background: #088;
  }
 </style>
