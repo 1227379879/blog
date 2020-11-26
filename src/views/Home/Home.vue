@@ -47,12 +47,13 @@ export default {
         }
     },
     mounted() {
-        this.WeatherTips()
+        this.pageINit()
         this.copy()
     },
     methods: {
         //打开抽屉
         changeDrawer() {
+            let filter = "filter: blur(5px);transform: scale(1.2);"
             this.drawer = true
             this.btnType = false
             this.$notify.info({
@@ -62,14 +63,17 @@ export default {
                 customClass: "operation",
                 duration: "1000"
             });
+            document.styleSheets[0].addRule(".header::before",filter)
         },
         //关闭抽屉
         handleClose(done) {
+            let filter = "filter: blur(0);transform: scale(1);"
             done();
             this.btnType = true
+            document.styleSheets[0].addRule(".header::before",filter)
         },
         //页面加载延时器以及，弹窗动画
-        WeatherTips() {
+        pageINit() {
             //页面加载的延时器
             setTimeout(() => {
                 this.isLoading = false
@@ -165,7 +169,6 @@ export default {
 
 
 .drawer_option {
-    opacity: 0.5;
     outline: none;
 }
 

@@ -1,20 +1,33 @@
 <template>
-  <div class="weather-box">
+    <div class="weather-box">
 
-  </div>
+    </div>
 </template>
 
 <script>
-  export default {
-    name:"weather",
-    methods:{
-
+import {cityWeather} from "@/request/api"
+export default {
+    name: "weather",
+    data(){
+        return{
+            city: "北京",
+        }
+    },
+    mounted() {
+        this.getCityWeather()
+    },
+    methods: {
+        getCityWeather() {
+            cityWeather(this.city).then(res => {
+                console.log(res);
+            })
+        }
     }
-  }
+}
 </script>
 
 <style lang="scss" scoped>
-  .weather-box{
+.weather-box {
     position: absolute;
     width: 300px;
     height: 200px;
@@ -25,9 +38,10 @@
     opacity: 0.2;
     transition: 0.3s;
     z-index: 2;
-  }
-  .weather-box:hover{
+}
+
+.weather-box:hover {
     box-shadow: 0 0 5px 2px #fff;
     opacity: 0.5;
-  }
+}
 </style>

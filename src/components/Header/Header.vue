@@ -52,5 +52,6 @@ export default {
     width: 100%;
     top: 0;
     background-size: cover !important;
+    transition: 0.5s;
 }
 </style>
