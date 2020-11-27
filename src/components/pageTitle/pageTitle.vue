@@ -28,7 +28,7 @@ export default {
     },
     mounted() {
         this.getRandomAna()
-        this.getRandomCelebrity()
+        // this.getRandomCelebrity()
     },
     methods: {
         getRandomAna() {

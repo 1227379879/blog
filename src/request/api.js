@@ -59,3 +59,14 @@ export function cityWeather(params){
         method:"get"
     })
 }
+
+
+/**
+ * 地图转换接口
+ * */
+export function transitionCity(key,locations){
+    return request({
+        url:"https://restapi.amap.com/v3/geocode/regeo?key="+key+"&location="+locations+"&coordsys=gps&radius=1000&extensions=all&batch=false&roadlevel=0",
+        method:"get"
+    })
+}

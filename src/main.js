@@ -5,12 +5,17 @@ import store from './store'
 import ElementUI from 'element-ui';
 import animated from 'animate.css'
 import VueParticles from 'vue-particles'
-import axios from "axios"
-Vue.prototype.$ = axios
+import aMap from 'vue-amap'
 Vue.use(VueParticles)
 Vue.use(ElementUI);
 Vue.use(animated)
+Vue.use(aMap)
 Vue.config.productionTip = false
+
+aMap.initAMapApiLoader({
+  key: 'e44cdac0d2e93594f1b453e2dbfd6a6a',
+  plugin: ['AMap.Geolocation', 'AMap.Geocoder']
+})
 
 //css
 import 'lib-flexible'
