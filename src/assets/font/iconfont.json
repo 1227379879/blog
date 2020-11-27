@@ -1,0 +1,23 @@
+{
+  "id": "2233580",
+  "name": "blog",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "15724300",
+      "name": "首 页",
+      "font_class": "shouye",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "18261995",
+      "name": "定位",
+      "font_class": "Frame1",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    }
+  ]
+}

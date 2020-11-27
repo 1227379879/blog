@@ -31,6 +31,8 @@ module.exports = {
                     "^/random": ""
                 }
             },
+
+
             /**
              * 网易云接口
              * */
@@ -50,20 +52,7 @@ module.exports = {
                 pathRewrite: {
                     "^/ana": ""
                 }
-            },
-
-            /**
-             * 天气接口
-             * http://wthrcdn.etouch.cn/weather_mini?city=%E5%8C%97%E4%BA%AC
-             * */
-            "/weather": {
-                target: "http://wthrcdn.etouch.cn/",
-                changeOrigin: true,
-                pathRewrite: {
-                    "^/weather": ""
-                }
-            },
-
+            }
         }
     },
 }

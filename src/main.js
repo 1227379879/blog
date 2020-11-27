@@ -16,11 +16,13 @@ aMap.initAMapApiLoader({
   key: 'e44cdac0d2e93594f1b453e2dbfd6a6a',
   plugin: ['AMap.Geolocation', 'AMap.Geocoder']
 })
+Vue.prototype.VueAMap = aMap;
 
 //css
 import 'lib-flexible'
 import "./style/heyui.css"
 import 'element-ui/lib/theme-chalk/index.css';
+import "./assets/font/iconfont.css"
 
 new Vue({
   router,

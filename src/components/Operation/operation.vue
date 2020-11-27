@@ -49,6 +49,9 @@ export default {
             })
         },
         getRandomPic() {
+            /**
+             * 此接口已达网站限制频率
+             * */
             RandomPic({type:"bg",return:"302",device:"mobile"}).then(res => {
                 this.imgUrl = res
             })

@@ -1,21 +1,31 @@
 <template>
     <div class="weather-box">
+        <div class="weather-location">
+        <i class="iconfont icon-Frame1"></i><!--   {{location}}-->
+        </div>
+        <div class="map" id="map"></div>
 
     </div>
 </template>
 
 <script>
-import {cityWeather , transitionCity} from "@/request/api"
-
+import {cityWeather , transitionCity , StaticMap} from "@/request/api"
+// 引入地图组件
+import AMap from "AMap"
 export default {
     name: "weather",
     data() {
         return {
-            city: "",
-            signAddress: "",
-            lat:null,
-            lng:null
-
+            province:"",    //省份
+            city: "",       // 城市
+            district:"",    //区
+            location:"",
+            lat:null,       // 经纬
+            lng:null,
+            zoom:12,
+            center: [121.59996, 31.197646],
+            amapManager:"amapManager",
+            img:""
         }
     },
     created() {
@@ -23,16 +33,15 @@ export default {
         this.getLocation();
     },
     mounted() {
-        this.getCityWeather()
         setTimeout(()=>{
         this.getTransition()
-
         },1000)
+        this.MapInit()
     },
     methods: {
         getCityWeather() {
             cityWeather(this.city).then(res => {
-                console.log(res);
+                console.log(res,"11");
             })
         },
         getLocation() {
@@ -52,9 +61,10 @@ export default {
                 function onComplete(data) {
                     // data是具体的定位信息
                     let {lat,lng} =  data.position
-                    console.log('定位成功信息：', data.position)
+                    // console.log('定位成功信息：', data.position)
                     self.lat = lat
                     self.lng = lng
+                    console.log(lng,lat,"经纬")
                 }
 
                 function onError(data) {
@@ -64,26 +74,27 @@ export default {
                 }
             })
         },
+        // 调用ip定位
         getLngLatLocation() {
             AMap.plugin('AMap.CitySearch', function () {
-                var citySearch = new AMap.CitySearch()
+                let citySearch = new AMap.CitySearch()
                 citySearch.getLocalCity(function (status, result) {
                     if (status === 'complete' && result.info === 'OK') {
                         // 查询成功，result即为当前所在城市信息
-                        console.log('通过ip获取当前城市：',result)
+                        // console.log('通过ip获取当前城市：',result)
                         //逆向地理编码
                         AMap.plugin('AMap.Geocoder', function() {
-                            var geocoder = new AMap.Geocoder({
+                            let geocoder = new AMap.Geocoder({
                                 // city 指定进行编码查询的城市，支持传入城市名、adcode 和 citycode
                                 city: result.adcode
                             })
 
-                            var lnglat = result.rectangle.split(';')[0].split(',')
+                            let lnglat = result.rectangle.split(';')[0].split(',')
 
                             geocoder.getAddress(lnglat, function(status, data) {
                                 if (status === 'complete' && data.info === 'OK') {
                                     // result为对应的地理位置详细信息
-                                    console.log(data,"aaaa")
+                                    console.log(data)
                                 }
                             })
                         })
@@ -93,9 +104,34 @@ export default {
         },
         getTransition(){
             transitionCity("e44cdac0d2e93594f1b453e2dbfd6a6a",`${this.lng},${this.lat}`).then(res=>{
-                console.log(res,"222")
+                let {province,city,district} = res.regeocode.addressComponent
+                this.province = province
+                this.city = city
+                this.district = district
+                this.location = res.regeocode.formatted_address
+                this.getCityWeather()
+                this.getStaticMap()
             })
+        },
+        getStaticMap(){
+            let params = {location:`${this.lng},${this.lat}`,zoom:5,size:"300*300",scale:1,traffic:1,key:"e44cdac0d2e93594f1b453e2dbfd6a6a"}
+            StaticMap(params).then(res=>{
+                this.img = res
+            })
+
+        },
+        /**
+         * 地图初始化
+         * */
+        MapInit () {
+            let that = this
+            let map = new AMap.Map('map', {
+                zoom:11,//级别
+                center: [that.lng,that.lat],//中心点坐标
+                viewMode:'3D'//使用3D视图
+            });
         }
+
     }
 }
 
@@ -106,19 +142,28 @@ export default {
 <style lang="scss" scoped>
 .weather-box {
     position: absolute;
-    width: 300px;
+    width: 400px;
     height: 200px;
     background-color: #fff;
+    padding: 15px;
     top: 10px;
     right: 10px;
     border-radius: 20px;
-    opacity: 0.2;
     transition: 0.3s;
     z-index: 2;
 }
 
 .weather-box:hover {
     box-shadow: 0 0 5px 2px #fff;
-    opacity: 0.5;
+}
+.weather-location{
+    display: flex;
+    align-items: center;
+    color: #000;
+}
+
+#map{
+    width:380px;
+    height:200px;
 }
 </style>

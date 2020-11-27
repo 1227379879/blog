@@ -3,7 +3,11 @@ const BASE_URL="/api"
 const BASE_URL_RANDOM = "/random"
 const BASE_URL_ANA = "/ana"
 const BASE_URL_PIC = "/pic"
-const BASE_URL_WEATHER = "/weather"
+// const BASE_URL_WEATHER = "/weather"
+/**
+ * 高德api接口
+ * */
+const BASE_URL_AUTONAVI = "https://restapi.amap.com/"
 
 /**
  *测试多接口*/
@@ -33,10 +37,6 @@ export function RandomCelebrity(){
 
 /**
  * 随机图片api
- * ：http://api.btstu.cn/sjbz/?lx=m_dongman
- * http://api.btstu.cn/sjbz/zsy.php
- * //https://img.xjh.me/random_img.php?type=bg&return=302&device=mobile
- * http://api.btstu.cn/sjbz/?lx=m_dongman
  * */
 
 export function RandomPic(params){
@@ -52,10 +52,12 @@ export function RandomPic(params){
  * 天气接口
  * */
 
-export function cityWeather(params){
+export function cityWeather(city){
+    if (city === "" || city == null){
+        city = "深圳"
+    }
     return request({
-        url:BASE_URL_WEATHER+"/weather_mini?city="+params,
-        // params:params,
+        url:BASE_URL_AUTONAVI+"v3/weather/weatherInfo?key=e44cdac0d2e93594f1b453e2dbfd6a6a&city="+city,
         method:"get"
     })
 }
@@ -66,7 +68,21 @@ export function cityWeather(params){
  * */
 export function transitionCity(key,locations){
     return request({
-        url:"https://restapi.amap.com/v3/geocode/regeo?key="+key+"&location="+locations+"&coordsys=gps&radius=1000&extensions=all&batch=false&roadlevel=0",
+        url:BASE_URL_AUTONAVI+"v3/geocode/regeo?key="+key+"&location="+locations+"&coordsys=gps&radius=1000&extensions=all&batch=false&roadlevel=0",
+        method:"get"
+    })
+}
+
+
+/**
+ * 高德静态地图接口
+ * https://restapi.amap.com/v3/staticmap?location=116.481485,39.990464&zoom=10&size=750*300&markers=mid,,A:116.481485,39.990464&key=<用户的key>
+ * */
+
+export function StaticMap(params){
+    return request({
+        url:BASE_URL_AUTONAVI+"/v3/staticmap",
+        params:params,
         method:"get"
     })
 }
