@@ -1,7 +1,7 @@
 <template>
     <div class="weather-box">
         <div class="weather-location">
-        <i class="iconfont icon-Frame1"></i><!--   {{location}}-->
+        <i class="iconfont icon-Frame1"></i>{{location}}
         </div>
         <div class="map" id="map"></div>
 
@@ -28,15 +28,16 @@ export default {
             img:""
         }
     },
-    created() {
+     async created() {
         // 此处为调用精确定位之后，调取ip定位，可根据实际情况改写
-        this.getLocation();
+        await this.getLocation();
+        // console.log("1")
     },
     mounted() {
         setTimeout(()=>{
         this.getTransition()
         },1000)
-        this.MapInit()
+        // this.MapInit()
     },
     methods: {
         getCityWeather() {
@@ -65,6 +66,7 @@ export default {
                     self.lat = lat
                     self.lng = lng
                     console.log(lng,lat,"经纬")
+                    self.MapInit()
                 }
 
                 function onError(data) {
@@ -144,7 +146,7 @@ export default {
     position: absolute;
     width: 400px;
     height: 200px;
-    background-color: #fff;
+    background-color: #ffffff60;
     padding: 15px;
     top: 10px;
     right: 10px;
@@ -163,7 +165,8 @@ export default {
 }
 
 #map{
-    width:380px;
-    height:200px;
+    width: 373px;
+    height: 152px;
+    border-radius: 10px;
 }
 </style>

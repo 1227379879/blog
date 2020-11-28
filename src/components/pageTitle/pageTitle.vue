@@ -63,6 +63,7 @@ export default {
     display: flex;
     justify-content: center;
     flex-direction: column;
+    z-index: 2;
 
     .page_random_box {
         display: flex;

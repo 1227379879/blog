@@ -4,24 +4,24 @@
         <el-tooltip class="item" effect="dark" content="天气" placement="left">
             <weather></weather>
         </el-tooltip>
-        <vue-particles
-            color="#dedede"
-            :particleOpacity="0.7"
-            :particlesNumber="80"
-            shapeType="circle"
-            :particleSize="4"
-            linesColor="#dedede"
-            :linesWidth="1"
-            :lineLinked="true"
-            :lineOpacity="0.4"
-            :linesDistance="150"
-            :moveSpeed="3"
-            :hoverEffect="true"
-            hoverMode="grab"
-            :clickEffect="true"
-            clickMode="push"
-        >
-        </vue-particles>
+<!--                  <vue-particles-->
+<!--                      color="#dedede"-->
+<!--                      :particleOpacity="0.7"-->
+<!--                      :particlesNumber="80"-->
+<!--                      shapeType="circle"-->
+<!--                      :particleSize="4"-->
+<!--                      linesColor="#dedede"-->
+<!--                      :linesWidth="1"-->
+<!--                      :lineLinked="true"-->
+<!--                      :lineOpacity="0.5"-->
+<!--                      :linesDistance="150"-->
+<!--                      :moveSpeed="3"-->
+<!--                      :hoverEffect="true"-->
+<!--                      hoverMode="grab"-->
+<!--                      :clickEffect="true"-->
+<!--                      clickMode="push"-->
+<!--                  >-->
+<!--                  </vue-particles>-->
     </header>
 </template>
 
@@ -39,10 +39,13 @@ export default {
 
 <style scoped>
 .header {
+    width: 100%;
     overflow: hidden;
     height: 100vh;
     position: relative;
+
 }
+
 
 .header::before {
     content: "";
@@ -53,5 +56,9 @@ export default {
     top: 0;
     background-size: cover !important;
     transition: 0.5s;
+}
+#particles-js{
+    position: absolute!important;
+    top: 0;
 }
 </style>

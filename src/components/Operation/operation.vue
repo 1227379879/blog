@@ -62,11 +62,13 @@ export default {
 
 <style lang="scss" scoped>
 .drawer_side_panel {
+
     padding: 20px;
     height: 100vh;
-    background: url("https://mmbiz.qpic.cn/mmbiz_png/FOOQJjWYibvzFZU9iaIA3j6iaTduLtxoMhfjicnxBdHLIK9YOmYDS4lRUmGnC8wUYYb3TNulDJqibibE7JbgNG3TVlsw/640?tp=webp&wxfrom=5&wx_lazy=1&wx_co=1");
+    //background: url("https://mmbiz.qpic.cn/mmbiz_png/FOOQJjWYibvzFZU9iaIA3j6iaTduLtxoMhfjicnxBdHLIK9YOmYDS4lRUmGnC8wUYYb3TNulDJqibibE7JbgNG3TVlsw/640?tp=webp&wxfrom=5&wx_lazy=1&wx_co=1");
     background-repeat:no-repeat;
     background-size: 100% 100%;
     background-position: center 0;
 }
+
 </style>

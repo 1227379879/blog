@@ -14,7 +14,24 @@
             Open Menu
         </el-button>
         <!--      按钮结束-->
-
+        <vue-particles
+            color="#dedede"
+            :particleOpacity="0.7"
+            :particlesNumber="80"
+            shapeType="circle"
+            :particleSize="4"
+            linesColor="#dedede"
+            :linesWidth="1"
+            :lineLinked="true"
+            :lineOpacity="0.5"
+            :linesDistance="150"
+            :moveSpeed="3"
+            :hoverEffect="true"
+            hoverMode="grab"
+            :clickEffect="true"
+            clickMode="push"
+        >
+        </vue-particles>
         <!--      抽屉-->
         <el-drawer class="drawer_option" :visible.sync="drawer" :direction="direction" :with-header="false" size="18%"
                    :before-close="handleClose">
@@ -143,6 +160,7 @@ export default {
         background-color: transparent;
         color: #fff;
         transition: 0.3s;
+        z-index: 2;
 
         &:hover {
             background-color: rgba(0, 0, 0, .3);
@@ -155,6 +173,8 @@ export default {
     background: url("../../assets/images/bgi1.jpg");
     z-index: 9999 !important;
     border: 0;
+}
+.operation-box{
 }
 
 .el-button:focus {
@@ -172,9 +192,7 @@ export default {
     outline: none;
 }
 
-#particles-js {
-    position: relative;
-}
+
 
 .el-icon-chat-dot-round {
     margin-right: 10px;
@@ -194,5 +212,18 @@ export default {
 .v-modal {
 }
 
-//.el-drawer 抽屉背景
+//抽屉背景
+.el-drawer__body{
+    background-color: #00000050;
+}
+.el-drawer{
+    background-color: transparent!important;
+}
+#particles-js{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    z-index: 0;
+}
 </style>
