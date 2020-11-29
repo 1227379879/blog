@@ -1,37 +1,19 @@
 <template>
     <header class="header">
         <page-title></page-title>
-        <el-tooltip class="item" effect="dark" content="天气" placement="left">
-            <weather></weather>
+        <el-tooltip class="item" effect="dark" content="定位地图" placement="left">
+            <Location></Location>
         </el-tooltip>
-<!--                  <vue-particles-->
-<!--                      color="#dedede"-->
-<!--                      :particleOpacity="0.7"-->
-<!--                      :particlesNumber="80"-->
-<!--                      shapeType="circle"-->
-<!--                      :particleSize="4"-->
-<!--                      linesColor="#dedede"-->
-<!--                      :linesWidth="1"-->
-<!--                      :lineLinked="true"-->
-<!--                      :lineOpacity="0.5"-->
-<!--                      :linesDistance="150"-->
-<!--                      :moveSpeed="3"-->
-<!--                      :hoverEffect="true"-->
-<!--                      hoverMode="grab"-->
-<!--                      :clickEffect="true"-->
-<!--                      clickMode="push"-->
-<!--                  >-->
-<!--                  </vue-particles>-->
     </header>
 </template>
 
 <script>
-import weather from "@/components/Weather/weather"
+import Location from "@/components/Location/Location"
 import pageTitle from "@/components/pageTitle/pageTitle";
 export default {
     name: "Header",
     components:{
-        weather,
+        Location,
         pageTitle
     }
 }

@@ -1,0 +1,71 @@
+<template>
+    <div class="map" id="map"></div>
+</template>
+
+<script>
+// 引入地图组件
+import AMap from "AMap"
+
+export default {
+    name: "Map",
+    props:["lat","lng"],
+    data() {
+        return {
+            province: "",    //省份
+            city: "",       //城市
+            district: "",    //区
+            location: "",    //位置信息
+        }
+    },
+    async created() {
+        // 此处为调用精确定位之后，调取ip定位，可根据实际情况改写
+        // await this.getLocation();
+    },
+    mounted() {
+        setTimeout(()=>{
+            this.MapInit()
+        },1000)
+        console.log(this.$props.lat)
+    },
+    methods: {
+        /**
+         * 地图初始化
+         * */
+        MapInit () {
+            let that = this
+            let map = new AMap.Map('map', {
+                zoom:11,//级别
+                center: [that.lng,that.lat],//中心点坐标
+                viewMode:'3D'//使用3D视图
+            });
+            var trafficLayer = new AMap.TileLayer.Traffic({
+                zIndex: 10
+            });
+            map.add(trafficLayer);//添加图层到地图
+            var marker = new AMap.Marker({
+                position:[that.$props.lng,that.$props.lat]//位置
+            })
+            map.add(marker);//添加到地图
+
+            var infoWindow = new AMap.InfoWindow({ //创建信息窗体
+                isCustom: true,  //使用自定义窗体
+                content:"", //信息窗体的内容可以是任意html片段
+                offset: new AMap.Pixel(16, -45)
+            });
+            var onMarkerClick  =  function(e) {
+                infoWindow.open(map, e.target.getPosition());//打开信息窗体
+                //e.target就是被点击的Marker
+            }
+            marker.on('click',onMarkerClick);//绑定click事件
+        },
+    }
+}
+</script>
+
+<style scoped>
+#map{
+    width: 373px;
+    height: 152px;
+    border-radius: 10px;
+}
+</style>
