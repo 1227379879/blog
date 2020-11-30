@@ -29,4 +29,7 @@
  #waifu{
      z-index: 3!important;
  }
+ #waifu-toggle{
+   z-index: 5;
+ }
 </style>
