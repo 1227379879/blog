@@ -1,6 +1,6 @@
 <template>
-    <div class="weather-box">
-        <div class="weather-location">
+    <div class="location-box">
+        <div class="location-info">
         <i class="iconfont icon-Frame1"></i>{{location}}
         </div>
         <Map :lng="lng" :lat="lat"></Map>
@@ -101,7 +101,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.weather-box {
+.location-box {
     position: absolute;
     width: 400px;
     height: 200px;
@@ -114,13 +114,17 @@ export default {
     z-index: 2;
 }
 
-.weather-box:hover {
+.location-box:hover {
     box-shadow: 0 0 5px 2px #fff;
 }
-.weather-location{
+.location-info{
     display: flex;
     align-items: center;
     color: #000;
+    word-break: keep-all;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #map{

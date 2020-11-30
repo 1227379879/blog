@@ -34,8 +34,10 @@ export default {
         MapInit () {
             let that = this
             let map = new AMap.Map('map', {
-                zoom:11,//级别
+                mapStyle: 'amap://styles/normal', //设置地图的显示样式
+                zoom:12,//级别
                 center: [that.lng,that.lat],//中心点坐标
+                pitch:50, // 地图俯仰角度，有效范围 0 度- 83 度
                 viewMode:'3D'//使用3D视图
             });
             var trafficLayer = new AMap.TileLayer.Traffic({
@@ -50,7 +52,7 @@ export default {
             var infoWindow = new AMap.InfoWindow({ //创建信息窗体
                 isCustom: true,  //使用自定义窗体
                 content:"", //信息窗体的内容可以是任意html片段
-                offset: new AMap.Pixel(16, -45)
+                offset: new AMap.Pixel(0, 0)
             });
             var onMarkerClick  =  function(e) {
                 infoWindow.open(map, e.target.getPosition());//打开信息窗体
