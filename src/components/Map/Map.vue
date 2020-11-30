@@ -18,9 +18,9 @@ export default {
         }
     },
     mounted() {
-        setTimeout(()=>{
+        if (this.$props.lat !== undefined && this.$props.lng !== undefined){
             this.MapInit()
-        },1000)
+        }
     },
     methods: {
         /**
