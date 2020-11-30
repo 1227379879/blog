@@ -17,15 +17,10 @@ export default {
             location: "",    //位置信息
         }
     },
-    async created() {
-        // 此处为调用精确定位之后，调取ip定位，可根据实际情况改写
-        // await this.getLocation();
-    },
     mounted() {
         setTimeout(()=>{
             this.MapInit()
         },1000)
-        console.log(this.$props.lat)
     },
     methods: {
         /**

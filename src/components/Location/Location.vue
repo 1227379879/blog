@@ -40,7 +40,7 @@ export default {
         /*高德地图api：“返回当前城市天气信息”*/
         getCityWeather() {
             cityWeather(this.city).then(res => {
-                console.log(res,"11");
+                console.log(res,"天气接口");
             })
         },
         /*获取当前定位信息*/
@@ -63,7 +63,7 @@ export default {
                     let {lat,lng} =  data.position
                     self.lat = lat
                     self.lng = lng
-                    console.log(lng,lat,"经纬")
+                    // console.log(lng,lat,"经纬")
                     /*获取到经纬度之后，在调用地图初始化来进行定位*/
                 }
 
@@ -84,17 +84,8 @@ export default {
                 this.location = res.regeocode.formatted_address
                 /*定位信息转换完成之后调用天气接口，来获取当前城市天气*/
                 this.getCityWeather()
-                /*原本是返回一张静态地图，结果返回一堆乱码  作废*/
-            })
-        },
-
-        /*高德地图的api，返回一堆图片乱码*/
-        getStaticMap(){
-            let params = {location:`${this.lng},${this.lat}`,zoom:5,size:"300*300",scale:1,traffic:1,key:"e44cdac0d2e93594f1b453e2dbfd6a6a"}
-            StaticMap(params).then(res=>{
             })
         }
-
     }
 }
 

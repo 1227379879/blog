@@ -27,8 +27,6 @@ export default {
     position: relative;
 
 }
-
-
 .header::before {
     content: "";
     height: 100%;

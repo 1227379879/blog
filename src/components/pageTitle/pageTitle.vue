@@ -28,7 +28,7 @@ export default {
     },
     mounted() {
         this.getRandomAna()
-        // this.getRandomCelebrity()
+        this.getRandomCelebrity()
     },
     methods: {
         getRandomAna() {
@@ -75,7 +75,7 @@ export default {
         text-align: center;
         margin-top: 180px;
         color: #fff;
-        font-size: 14px;
+        font-size: 16px;
         transition: 0.5s;
 
         .page_title {
