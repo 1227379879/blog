@@ -15,6 +15,7 @@
         </el-button>
         <!--      按钮结束-->
         <vue-particles
+            v-show="particleFlag"
             color="#dedede"
             :particleOpacity="0.7"
             :particlesNumber="80"
@@ -50,6 +51,7 @@ import loading from "@/components/Loading/loading";
 import operation from "@/components/Operation/operation";
 import Header from "@/components/Header/Header";
 import {search} from "@/request/api"
+import {mapState} from "vuex"
 
 export default {
     name: 'Home',
@@ -67,10 +69,14 @@ export default {
         this.pageINit()
         this.copy()
     },
+    computed:{
+      ...mapState(["groundGlassFlag","particleFlag"])
+    },
     methods: {
         //打开抽屉
         changeDrawer() {
             let filter = "filter: blur(5px);transform: scale(1.2);"
+            let trans = "transform: scale(1.2);"
             this.drawer = true
             this.btnType = false
             this.$notify.info({
@@ -80,7 +86,11 @@ export default {
                 customClass: "operation",
                 duration: "1000"
             });
-            document.styleSheets[0].addRule(".header::before",filter)
+            if (this.groundGlassFlag){
+                document.styleSheets[0].addRule(".header::before",filter)
+            }else {
+                document.styleSheets[0].addRule(".header::before",trans)
+            }
         },
         //关闭抽屉
         handleClose(done) {

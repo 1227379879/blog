@@ -1,13 +1,14 @@
-# b
+# blog 一个想到啥写啥的博客，不定期更新
 
-## Project setup
+## 项目指引
+
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### 启动
 ```
-npm run serve
+npm start
 ```
 
 ### Compiles and minifies for production

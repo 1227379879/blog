@@ -1,5 +1,5 @@
 <template>
-    <div class="location-box">
+    <div class="location-box" v-show="mapTypeFlag">
         <div class="location-info">
         <i class="iconfont icon-Frame1"></i>{{location}}
         </div>
@@ -9,8 +9,10 @@
 
 <script>
 import Map from "@/components/Map/Map";
-import {cityWeather , transitionCity , StaticMap} from "@/request/api"
+import {cityWeather , transitionCity} from "@/request/api"
+import {mapState} from "vuex"
 // 引入地图组件
+
 import AMap from "AMap"
 export default {
     name: "weather",
@@ -35,6 +37,9 @@ export default {
         setTimeout(()=>{
         this.getTransition()
         },1000)
+    },
+    computed:{
+      ...mapState(["mapTypeFlag"])
     },
     methods: {
         /*高德地图api：“返回当前城市天气信息”*/

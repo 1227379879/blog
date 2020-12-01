@@ -1,5 +1,5 @@
 <template>
-    <div class="page_box">
+    <div class="page_box" v-show="speechFlag">
         <div class="page_random_box" @mouseover="collectType = true" @mouseout="collectType = false">
             <div class="page_title">
                 {{pageTitleData}}
@@ -15,7 +15,7 @@
 
 <script>
 import {RandomAna, RandomCelebrity} from "@/request/api";
-
+import {mapState} from "vuex"
 export default {
     name: "pageTitle",
     data() {
@@ -29,6 +29,9 @@ export default {
     mounted() {
         this.getRandomAna()
         this.getRandomCelebrity()
+    },
+    computed: {
+      ...mapState(["speechFlag"])
     },
     methods: {
         getRandomAna() {
