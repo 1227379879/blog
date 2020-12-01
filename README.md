@@ -16,5 +16,10 @@ npm start
 npm run build
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## 功能：
+
++ 地图定位
++ 看板娘
++ 利用input的file来进行上传图片，通过控制伪类元素进行更改背景图
++ 粒子效果 
++ vuex长缓存
